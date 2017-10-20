@@ -42,50 +42,6 @@ public class ChannelListener implements Listener {
 						command1.handle(callbackId, args.toArray(new String[]{}));
 					}
 				}
-				
-//				if(channel.equals("ToServer")) {
-//					String callbackId = in.readUTF();
-//					String from = in.readUTF();
-//					String to = in.readUTF();
-//					String message = in.readUTF();
-//					
-//					ServerInfo serverInfo = MobSlayerBungee.getInstance().getProxy().getServerInfo(to);
-//					
-//					if(serverInfo != null) {
-//						sendToBukkit("FromServer", serverInfo, callbackId, from, message);
-//					}
-//				} else if(channel.equals("ServerAddress")) {
-//					String callbackId = in.readUTF();
-//					String sender = in.readUTF();
-//					String server = in.readUTF();
-//					
-//					ServerInfo serverInfo = MobSlayerBungee.getInstance().getProxy().getServerInfo(sender);
-//					ServerInfo serverInfo1 = MobSlayerBungee.getInstance().getProxy().getServerInfo(server);
-//					
-//					if(serverInfo != null) {
-//						sendToBukkit("ServerAddress", serverInfo, callbackId, serverInfo1.getAddress().getAddress() + ", " + serverInfo1.getAddress().getPort());
-//					}
-//				} else if(channel.equals("WhoAmI")) {
-//					String callbackId = in.readUTF();
-//					String playerName = in.readUTF();
-//					
-//					ServerInfo serverInfo = MobSlayerBungee.getInstance().getProxy().getServerInfo(MobSlayerBungee.getInstance().getProxy().getPlayer(playerName)
-//							.getServer().getInfo().getName());
-//					
-//					if(serverInfo != null) {
-//						sendToBukkit("WhoAmI", serverInfo, callbackId, serverInfo.getName());
-//					}
-//				} else if(channel.equals("Exists")) {
-//					String callbackId = in.readUTF();
-//					String sender = in.readUTF();
-//					String server = in.readUTF();
-//					
-//					ServerInfo serverInfo = MobSlayerBungee.getInstance().getProxy().getServerInfo(sender);
-//					
-//					if(serverInfo != null) {
-//						sendToBukkit("Exists", serverInfo, callbackId, MobSlayerBungee.getInstance().getProxy().getServers().containsKey(server) + "");
-//					}
-//				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
