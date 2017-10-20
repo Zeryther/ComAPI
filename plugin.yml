@@ -1,0 +1,4 @@
+name: ComAPI
+version: 1.0
+author: rex2go
+main: com.rex2go.comapi.spigot.ComAPI
