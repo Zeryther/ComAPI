@@ -23,7 +23,7 @@ public class GetServersCommand extends Command {
 
 			ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 			if (serverInfo != null) {
-				sendToBukkit(serverInfo, callbackId, new String[] { s });
+				sendToBukkit(serverInfo, callbackId, s);
 			}
 		}
 	}

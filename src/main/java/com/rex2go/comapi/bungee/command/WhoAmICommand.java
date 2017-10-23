@@ -17,7 +17,7 @@ public class WhoAmICommand extends Command {
 				if(ComAPI.getInstance().getProxy().getPlayer(args[0]) != null) {
 					ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(ComAPI.getInstance().getProxy().getPlayer(args[0]).getServer().getInfo().getName());
 					if(serverInfo != null) {
-						sendToBukkit(serverInfo, callbackId, new String[] { serverInfo.getName()});
+						sendToBukkit(serverInfo, callbackId, serverInfo.getName());
 					}
 				}
 			}

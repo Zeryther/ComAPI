@@ -47,12 +47,12 @@ public class ConnectCommand extends Command {
 				
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendToBukkit(serverInfo, callbackId, new String[] { exitCode + "" });
+					sendToBukkit(serverInfo, callbackId, String.valueOf(exitCode));
 				}
 			} else {
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendErrorToBukkit(serverInfo, callbackId, new String[] { "Too few arguments" });
+					sendErrorToBukkit(serverInfo, callbackId, "Too few arguments");
 				}
 			}
 		}

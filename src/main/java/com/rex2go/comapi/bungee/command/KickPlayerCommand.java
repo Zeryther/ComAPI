@@ -2,34 +2,36 @@ package com.rex2go.comapi.bungee.command;
 
 import com.rex2go.comapi.bungee.ComAPI;
 
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 
-public class UUIDCommand extends Command {
+public class KickPlayerCommand extends Command {
 
-	public UUIDCommand() {
-		super("uuid");
+	public KickPlayerCommand() {
+		super("kickplayer");
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void handle(String callbackId, String[] args) {
 		if(args != null && callbackId != null) {
-			if(args.length >= 1) {
+			if(args.length >= 2) {
+				int exitCode = 1; // 0 = OK, 1 = Player not online
 				String playerName = args[0];
-				String uuid = "null";
+				String reason = args[1];
 				
 				if(ComAPI.getInstance().getProxy().getPlayer(playerName) != null) {
-					uuid = ComAPI.getInstance().getProxy().getPlayer(playerName).getUUID();
+					ComAPI.getInstance().getProxy().getPlayer(playerName).disconnect(new TextComponent(reason));
+					exitCode = 0;
 				}
 				
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendToBukkit(serverInfo, callbackId, new String[] { uuid });
+					sendToBukkit(serverInfo, callbackId, String.valueOf(exitCode));
 				}
 			} else {
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendErrorToBukkit(serverInfo, callbackId, new String[] { "Too few arguments" });
+					sendErrorToBukkit(serverInfo, callbackId, "Too few arguments");
 				}
 			}
 		}

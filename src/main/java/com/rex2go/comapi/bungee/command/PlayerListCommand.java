@@ -26,13 +26,13 @@ public class PlayerListCommand extends Command {
 					
 					ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 					if(serverInfo != null) {
-						sendToBukkit(serverInfo, callbackId, new String[] { s });
+						sendToBukkit(serverInfo, callbackId, s);
 					}
 				}
 			} else {
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendErrorToBukkit(serverInfo, callbackId, new String[] { "Too few arguments" });
+					sendErrorToBukkit(serverInfo, callbackId, "Too few arguments");
 				}
 			}
 		}

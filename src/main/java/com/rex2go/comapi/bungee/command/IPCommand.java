@@ -4,10 +4,10 @@ import com.rex2go.comapi.bungee.ComAPI;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
-public class GetServerCommand extends Command {
+public class IPCommand extends Command {
 
-	public GetServerCommand() {
-		super("getserver");
+	public IPCommand() {
+		super("ip");
 	}
 
 	@Override
@@ -15,20 +15,20 @@ public class GetServerCommand extends Command {
 		if(args != null && callbackId != null) {
 			if(args.length >= 1) {
 				String playerName = args[0];
-				String serverName = "null";
+				String hostString = "null";
 				
 				if(ComAPI.getInstance().getProxy().getPlayer(playerName) != null) {
-					serverName = ComAPI.getInstance().getProxy().getPlayer(playerName).getServer().getInfo().getName();
+					hostString = ComAPI.getInstance().getProxy().getPlayer(playerName).getAddress().getHostString();
 				}
 				
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendToBukkit(serverInfo, callbackId, new String[] { serverName });
+					sendToBukkit(serverInfo, callbackId, hostString);
 				}
 			} else {
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendErrorToBukkit(serverInfo, callbackId, new String[] { "Too few arguments" });
+					sendErrorToBukkit(serverInfo, callbackId, "Too few arguments");
 				}
 			}
 		}

@@ -4,10 +4,10 @@ import com.rex2go.comapi.bungee.ComAPI;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
-public class ServerIPCommand extends Command {
+public class PlayerCountCommand extends Command {
 
-	public ServerIPCommand() {
-		super("serverip");
+	public PlayerCountCommand() {
+		super("playercount");
 	}
 
 	@Override
@@ -15,21 +15,16 @@ public class ServerIPCommand extends Command {
 		if(args != null && callbackId != null) {
 			if(args.length >= 1) {
 				String serverName = args[0];
-				String hostString = "null";
-				
-				if(ComAPI.getInstance().getProxy().getServers().containsKey(serverName)) {
-					hostString = ComAPI.getInstance().getProxy().getServerInfo(serverName).getAddress().getHostString() + ":" +
-							ComAPI.getInstance().getProxy().getServerInfo(serverName).getAddress().getPort();
-				}
+				int playerCount = ComAPI.getInstance().getProxy().getServerInfo(serverName) == null ? 0 : ComAPI.getInstance().getProxy().getServerInfo(serverName).getPlayers().size();
 				
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendToBukkit(serverInfo, callbackId, new String[] { hostString });
+					sendToBukkit(serverInfo, callbackId, String.valueOf(playerCount));
 				}
 			} else {
 				ServerInfo serverInfo = ComAPI.getInstance().getProxy().getServerInfo(callbackId.split(":")[0]);
 				if(serverInfo != null) {
-					sendErrorToBukkit(serverInfo, callbackId, new String[] { "Too few arguments" });
+					sendErrorToBukkit(serverInfo, callbackId, "Too few arguments");
 				}
 			}
 		}
